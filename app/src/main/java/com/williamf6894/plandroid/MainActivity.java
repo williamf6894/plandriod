@@ -1,6 +1,7 @@
 package com.williamf6894.plandroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         PlanItem test = new PlanItem("Title", "Tag", "Description");
+        PlanItem test2 = new PlanItem("Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
+        PlanItem test3 = new PlanItem("TitleThing", "Tag", "Example of a real Description");
         List<PlanItem> listOfAllPlans = new ArrayList<>();
         listOfAllPlans.add(test);
+        listOfAllPlans.add(test2);
+        listOfAllPlans.add(test3);
 
         // Replace the String with a plan objects in the future
 
@@ -37,12 +42,21 @@ public class MainActivity extends Activity {
                 new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String thisIsJustSoemthingTempToHoldIt = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(MainActivity.this, thisIsJustSoemthingTempToHoldIt, Toast.LENGTH_SHORT).show();
+                        /*Intent i = new Intent(this,OpenPlanActivity.class);
+                        String userMessage = "Example of the description";
+                        i.putExtra("DescriptionMessage", userMessage);
+                        startActivity(i);*/
                     }
                 }
         );
 
+    }
+
+    public void OnClick(){
+        Intent i = new Intent(this,OpenPlanActivity.class);
+        String userMessage = "Example of the description";
+        i.putExtra("DescriptionMessage", userMessage);
+        startActivity(i);
     }
 
     @Override
