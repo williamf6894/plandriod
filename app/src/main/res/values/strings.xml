@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_settings">Settings</string>
+    <string name="location">Location...</string>
+    <string name="date">Time / Date</string>
+    <string name="plan_title">My Application Plan Title</string>
+    <string name="description">Description ...................................................................................................................</string>
+    <string name="tag">Tag</string>
+    <string name="time">time</string>
+</resources>
