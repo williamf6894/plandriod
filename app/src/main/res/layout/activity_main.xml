@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context="com.williamf6894.plandroid.MainActivity">
 
+
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

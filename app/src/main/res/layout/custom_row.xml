@@ -6,8 +6,9 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:background="@color/background_material_light"
-    android:onClick="OnClick"
-    android:nestedScrollingEnabled="false">
+    android:onClick="openEdit"
+    android:nestedScrollingEnabled="false"
+    android:clickable="true">
 
     <TextView
         android:layout_width="125dp"

@@ -18,7 +18,6 @@
         android:textIsSelectable="true"
         android:textColor="#222222"
         android:typeface="sans"
-        android:onClick="OnClick"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:text="Title" />
 

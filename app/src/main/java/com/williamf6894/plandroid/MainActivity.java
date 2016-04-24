@@ -3,6 +3,7 @@ package com.williamf6894.plandroid;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +15,8 @@ import android.widget.EditText;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity {
-
+public class MainActivity extends AppCompatActivity {
+    public List<PlanItem> listOfAllPlans = new ArrayList<>();
 
 
     @Override
@@ -25,16 +26,22 @@ public class MainActivity extends Activity {
         PlanItem test = new PlanItem("Title", "Tag", "Description");
         PlanItem test2 = new PlanItem("Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
         PlanItem test3 = new PlanItem("TitleThing", "Tag", "Example of a real Description");
-        List<PlanItem> listOfAllPlans = new ArrayList<>();
+        PlanItem test4 = new PlanItem("Title", "Tag", "Description");
+        PlanItem test5 = new PlanItem("Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
+        PlanItem test6 = new PlanItem("TitleThing", "Tag", "Example of a real Description");
         listOfAllPlans.add(test);
         listOfAllPlans.add(test2);
         listOfAllPlans.add(test3);
+        listOfAllPlans.add(test4);
+        listOfAllPlans.add(test5);
+        listOfAllPlans.add(test6);
 
         // Replace the String with a plan objects in the future
 
         ListAdapter mainListAdapter = new CustomAdapter(this, listOfAllPlans);
 
         ListView thePlanView = (ListView) findViewById(R.id.mainView);
+        assert thePlanView != null;
         thePlanView.setAdapter(mainListAdapter);
 
             //What happens when item is clicked on screen
@@ -52,10 +59,9 @@ public class MainActivity extends Activity {
 
     }
 
-    public void OnClick(){
+    public void openEdit(View view){
         Intent i = new Intent(this,OpenPlanActivity.class);
-        String userMessage = "Example of the description";
-        i.putExtra("DescriptionMessage", userMessage);
+        i.putExtra("DescriptionMessage", "Sample description");
         startActivity(i);
     }
 
@@ -74,7 +80,9 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add){
+            Intent i = new Intent(this,OpenPlanActivity.class);
+            startActivity(i);
             return true;
         }
 

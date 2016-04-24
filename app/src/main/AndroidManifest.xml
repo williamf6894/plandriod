@@ -15,7 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OpenPlanActivity"></activity>
+        <activity android:name=".OpenPlanActivity" android:parentActivityName="com.williamf6894.plandroid.MainActivity">
+
+        </activity>
+        <activity android:name=".NewPlanActivity" android:parentActivityName="com.williamf6894.plandroid.MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

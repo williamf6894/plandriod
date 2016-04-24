@@ -32,7 +32,7 @@ class CustomAdapter extends ArrayAdapter<PlanItem> {
         String titleOfPlan = getItem(position).getTitle();
         String tagOfPlan = getItem(position).getTag();
         String descriptionOfPlan = getItem(position).getDescription();
-        //Get Soemthing in the array.
+        //Get Something in the array.
 
         TextView plansTitle = (TextView) customView.findViewById(R.id.planTitle);
         TextView plansTag = (TextView) customView.findViewById(R.id.planTag);
