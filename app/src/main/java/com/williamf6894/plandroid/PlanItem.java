@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
  * Created by will on 08/04/16.
  */
 public class PlanItem {
+    /* Might need to add an ID */
+    private int ID;
     private String title;
     private String tag;
     private String description;
@@ -18,6 +20,10 @@ public class PlanItem {
     private String location;
     private int customTimeRepeat;
     private int numberOfRepetitions;
+
+    public int getID(){
+        return ID;
+    }
 
     public int getNumberOfRepetitions() {
         return numberOfRepetitions;
@@ -73,8 +79,9 @@ public class PlanItem {
     */
 
     //This is a Plan
-    public PlanItem(String title, String tag, String description, Date triggerDate, Time triggerTime, boolean repeating, boolean alarm, String location, int customTimeRepeat, int numberOfRepetitions) {
+    public PlanItem(int ID, String title, String tag, String description, Date triggerDate, Time triggerTime, boolean repeating, boolean alarm, String location, int customTimeRepeat, int numberOfRepetitions) {
         super();
+        this.ID = ID;
         this.title = title;
         this.tag = tag;
         this.description = description;
@@ -90,8 +97,9 @@ public class PlanItem {
 
     // This is another type of plan
 
-    public PlanItem(String title, String tag, String description, String location) {
+    public PlanItem(int ID, String title, String tag, String description, String location) {
         super();
+        this.ID = ID;
         this.title = title;
         this.tag = tag;
         this.description = description;
@@ -101,9 +109,9 @@ public class PlanItem {
     }
 
     //This is a note.
-    public PlanItem(String title, String tag, String description){
+    public PlanItem(int ID, String title, String tag, String description){
         super();
-
+        this.ID = ID;
         this.title = title;
         this.tag = tag;
         this.description = description;
@@ -112,8 +120,9 @@ public class PlanItem {
 
     /*
     //This is a study note
-    public PlanItem(String title, String tag, String description, String help){
+    public PlanItem(int ID, String title, String tag, String description, String help){
         super();
+        this.ID = ID;
         this.title = title;
         this.tag = tag;
         this.description = description;
@@ -123,8 +132,9 @@ public class PlanItem {
     }
 
     //This is a default study note
-    public PlanItem(String title, String tag, String description){
+    public PlanItem(int ID, String title, String tag, String description){
         super();
+        this.ID = ID;
         this.title = title;
         this.tag = tag;
         this.description = description;

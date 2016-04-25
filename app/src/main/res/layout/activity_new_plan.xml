@@ -17,10 +17,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:textColor="#222222"
-        android:typeface="sans"
-        android:text=""
         android:hint="Title"
-    />
+        android:editable="true"
+        android:textStyle="bold" />
         <!--style="@style/Base.TextAppearance.AppCompat.Title"-->
 
 
@@ -33,7 +32,8 @@
         android:layout_below="@+id/editTitle"
         android:layout_alignParentStart="true"
         android:hint="Description"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:editable="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -41,7 +41,8 @@
         android:id="@+id/editTag"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:hint="Tag" />
+        android:hint="Tag"
+        android:editable="true" />
 
 
 </RelativeLayout>

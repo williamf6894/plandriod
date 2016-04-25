@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PlanItem test = new PlanItem("Title", "Tag", "Description");
-        PlanItem test2 = new PlanItem("Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
-        PlanItem test3 = new PlanItem("TitleThing", "Tag", "Example of a real Description");
-        PlanItem test4 = new PlanItem("Title", "Tag", "Description");
-        PlanItem test5 = new PlanItem("Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
-        PlanItem test6 = new PlanItem("TitleThing", "Tag", "Example of a real Description");
+        PlanItem test = new PlanItem(1, "Title", "Tag", "Description");
+        PlanItem test2 = new PlanItem(2, "Title2", "Tags3", "Remember to buy eggs, milk and button for the cake.");
+        PlanItem test3 = new PlanItem(3, "TitleThing", "Tag", "Example of a real Description");
+        PlanItem test4 = new PlanItem(4, "Title", "Tag34", "Description");
+        PlanItem test5 = new PlanItem(5, "Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
+        PlanItem test6 = new PlanItem(6, "TitleThing", "Tag", "Example of a real Description");
         listOfAllPlans.add(test);
         listOfAllPlans.add(test2);
         listOfAllPlans.add(test3);
