@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 public class PlanItem {
     /* Might need to add an ID */
     private int ID;
+    private int sched_ID;
     private String title;
     private String tag;
     private String description;
@@ -63,8 +64,12 @@ public class PlanItem {
 
     public String getTag() {
         return tag;
-
     }
+
+    public int getSched_ID() {
+        return sched_ID;
+    }
+
 
     /**
     * Default empty PlanItem constructor
@@ -79,9 +84,10 @@ public class PlanItem {
     */
 
     //This is a Plan
-    public PlanItem(int ID, String title, String tag, String description, Date triggerDate, Time triggerTime, boolean repeating, boolean alarm, String location, int customTimeRepeat, int numberOfRepetitions) {
+    public PlanItem(int ID, int sched_ID, String title, String tag, String description, Date triggerDate, Time triggerTime, boolean repeating, boolean alarm, String location, int customTimeRepeat, int numberOfRepetitions) {
         super();
         this.ID = ID;
+        this.sched_ID = sched_ID;
         this.title = title;
         this.tag = tag;
         this.description = description;
@@ -97,9 +103,10 @@ public class PlanItem {
 
     // This is another type of plan
 
-    public PlanItem(int ID, String title, String tag, String description, String location) {
+    public PlanItem(int ID, int sched_ID, String title, String tag, String description, String location) {
         super();
         this.ID = ID;
+        this.sched_ID = sched_ID;
         this.title = title;
         this.tag = tag;
         this.description = description;
@@ -109,9 +116,10 @@ public class PlanItem {
     }
 
     //This is a note.
-    public PlanItem(int ID, String title, String tag, String description){
+    public PlanItem(int ID, int sched_ID, String title, String tag, String description){
         super();
         this.ID = ID;
+        this.sched_ID = sched_ID;
         this.title = title;
         this.tag = tag;
         this.description = description;

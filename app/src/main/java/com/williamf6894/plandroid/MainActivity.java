@@ -2,6 +2,7 @@ package com.williamf6894.plandroid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,36 +12,48 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     public List<PlanItem> listOfAllPlans = new ArrayList<>();
+    public DBHandler dbHandler;
+    TextView title ;
+    TextView tag;
+    TextView description;
+    TextView location;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PlanItem test = new PlanItem(1, "Title", "Tag", "Description");
-        PlanItem test2 = new PlanItem(2, "Title2", "Tags3", "Remember to buy eggs, milk and button for the cake.");
-        PlanItem test3 = new PlanItem(3, "TitleThing", "Tag", "Example of a real Description");
-        PlanItem test4 = new PlanItem(4, "Title", "Tag34", "Description");
-        PlanItem test5 = new PlanItem(5, "Title2", "Tags", "Remember to buy eggs, milk and button for the cake.");
-        PlanItem test6 = new PlanItem(6, "TitleThing", "Tag", "Example of a real Description");
-        listOfAllPlans.add(test);
-        listOfAllPlans.add(test2);
-        listOfAllPlans.add(test3);
-        listOfAllPlans.add(test4);
-        listOfAllPlans.add(test5);
-        listOfAllPlans.add(test6);
+        dbHandler = new DBHandler(this);
 
+        // PlanItem test3 = new PlanItem(3, 1, "TitleThing", "Tag", "Example of a real Description", "");
+        // PlanItem test4 = new PlanItem(4, 1, "Title", "Tag34", "Description", "");
+        // dbHandler.addPlan(test3.getTitle(), test3.getTag(), test3.getDescription(), test3.getLocation(), test3.getSched_ID());
+        // dbHandler.addPlan(test4.getTitle(), test4.getTag(), test4.getDescription(), test4.getLocation(), test4.getSched_ID());
+        // listOfAllPlans = dbHandler.getTablePlansinfo();
         // Replace the String with a plan objects in the future
+
+        Cursor res = dbHandler.getAllData();
+        if (res.getCount() == 0){
+
+            return;
+        }
+        while(res.moveToNext()){
+            listOfAllPlans.add(new PlanItem(res.getInt(0), res.getInt(1), res.getString(2),
+                    res.getString(3), res.getString(4), res.getString(5)));
+        }
 
         ListAdapter mainListAdapter = new CustomAdapter(this, listOfAllPlans);
 
         ListView thePlanView = (ListView) findViewById(R.id.mainView);
+        thePlanView.setItemsCanFocus(false);
         assert thePlanView != null;
         thePlanView.setAdapter(mainListAdapter);
 
@@ -49,21 +62,26 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        /*Intent i = new Intent(this,OpenPlanActivity.class);
-                        String userMessage = "Example of the description";
-                        i.putExtra("DescriptionMessage", userMessage);
-                        startActivity(i);*/
+                        position += 1;
+                        Bundle dataBundle =  new Bundle();
+                        dataBundle.putInt("IdNumber", position);
+
+                        Intent intent = new Intent(getApplicationContext(),OpenPlanActivity.class);
+
+                        intent.putExtras(dataBundle);
+                        startActivity(intent);
                     }
                 }
         );
-
     }
+
 
     public void openEdit(View view){
-        Intent i = new Intent(this,OpenPlanActivity.class);
-        i.putExtra("DescriptionMessage", "Sample description");
+        Intent i = new Intent(this, OpenPlanActivity.class);
+        i.putExtra("IdNumber", 2);
         startActivity(i);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,15 +95,27 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_add){
-            Intent i = new Intent(this,OpenPlanActivity.class);
-            startActivity(i);
-            return true;
+        switch(item.getItemId()){
+            case R.id.action_add:Bundle dataBundle = new Bundle();
+                dataBundle.putInt("id", 0);
+
+                Intent intent = new Intent(getApplicationContext(), OpenPlanActivity.class);
+                intent.putExtras(dataBundle);
+
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
+        //noinspection SimplifiableIfStatement
+        // if (id == R.id.action_add){
+        //     Intent i = new Intent(this,OpenPlanActivity.class);
+        //     startActivity(i);
+        //     return true;
+        // }
+
+        //return super.onOptionsItemSelected(item);
     }
 }

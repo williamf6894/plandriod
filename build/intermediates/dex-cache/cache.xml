@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_98e5e200114ebb743a3049a87673fab029d2a2b4/classes.dex" />
+    </item>
+    <item
         jar="/home/will/.AndroidStudio2.0/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
         jumboMode="true"
         revision="23.0.2"
@@ -12,29 +19,8 @@
         jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="f56dd2361befce58e5ee1e7e2d0330683fb7ba5c">
+        sha1="64191ba80957c8930a77b0fcdedf75fea5162e43">
         <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_411d07fe91510b59c445d675b8c67c3847bb76c2/classes.dex" />
-    </item>
-    <item
-        jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="88349c862a771a64dda6194485e793767d1dd5c2">
-        <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_59945880f4d2717add32c67d7f37eefe8ae93ecf/classes.dex" />
-    </item>
-    <item
-        jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
-        <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_98e5e200114ebb743a3049a87673fab029d2a2b4/classes.dex" />
-    </item>
-    <item
-        jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
-        <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_f629f37d04347a74d6785c3f8635cef8d5c4abb9/classes.dex" />
     </item>
     <item
         jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
@@ -44,11 +30,25 @@
         <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_da7795c054cebd06df5a3b29f4ba47d523513f8f/classes.dex" />
     </item>
     <item
+        jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_f629f37d04347a74d6785c3f8635cef8d5c4abb9/classes.dex" />
+    </item>
+    <item
         jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.2"
         sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
         <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_7d39177d9a611eca2130f6499b8e185bb98ffedb/classes.dex" />
+    </item>
+    <item
+        jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e250578297b08515180a900635fb4368f4d3ed27">
+        <dex dex="/home/will/Documents/GitHub/plandriod/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_59945880f4d2717add32c67d7f37eefe8ae93ecf/classes.dex" />
     </item>
     <item
         jar="/home/will/Documents/GitHub/plandriod/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
