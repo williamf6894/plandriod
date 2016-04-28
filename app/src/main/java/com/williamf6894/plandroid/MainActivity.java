@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor res = dbHandler.getAllData();
         if (res.getCount() == 0){
-
             return;
         }
         while(res.moveToNext()){
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                         position += 1;
                         Bundle dataBundle =  new Bundle();
                         dataBundle.putInt("IdNumber", position);
@@ -75,12 +76,6 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-
-    public void openEdit(View view){
-        Intent i = new Intent(this, OpenPlanActivity.class);
-        i.putExtra("IdNumber", 2);
-        startActivity(i);
-    }
 
 
     @Override
@@ -100,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_add:Bundle dataBundle = new Bundle();
                 dataBundle.putInt("id", 0);
 
-                Intent intent = new Intent(getApplicationContext(), OpenPlanActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NewPlanActivity.class);
                 intent.putExtras(dataBundle);
 
                 startActivity(intent);

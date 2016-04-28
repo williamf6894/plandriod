@@ -12,9 +12,10 @@ import android.widget.EditText;
 
 public class OpenPlanActivity extends AppCompatActivity {
     private DBHandler dbHandler;
+    EditText titleText, tagText, descText, locText;
+    String title, tag, desc, loc; //New to the database
+    String titleCurrent, tagCurrent, descCurrent, locCurrent; //Gets the current data in the db
 
-    EditText titleText, tagText, descText;
-    Button savebutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,8 @@ public class OpenPlanActivity extends AppCompatActivity {
         titleText = (EditText) findViewById(R.id.editTitle);
         tagText = (EditText) findViewById(R.id.editTag);
         descText = (EditText) findViewById(R.id.editDescription);
+        locText = (EditText) findViewById(R.id.editLocation);
+
         fillEditView(IdNumber);
 
     }
@@ -44,16 +47,22 @@ public class OpenPlanActivity extends AppCompatActivity {
 
             SAVE DATA ON BACK OR EXIT.LEAVE A TOAST
             */
-            if(titleText.getText().toString() == null && descText.getText().toString() == null){
+            title = titleText.getText().toString();
+            tag = tagText.getText().toString();
+            desc = descText.getText().toString();
+            loc = locText.getText().toString();
 
+            if(title.equals("") && desc.equals("")){
+                startActivity(parentIntent);
+                return true;
             }
             else
                 dbHandler.insertData(
-                    titleText.getText().toString(),
-                    tagText.getText().toString(),
-                    descText.getText().toString(),
-                    "locationsplace",
-                    12
+                        title,
+                        tag,
+                        desc,
+                        loc,
+                        12
                 );
             startActivity(parentIntent);
             return true;
@@ -70,8 +79,13 @@ public class OpenPlanActivity extends AppCompatActivity {
             titleText.setText(res.getString(2));
             tagText.setText(res.getString(3));
             descText.setText(res.getString(4));
+            locText.setText(res.getString(5));
             //res.getString(5)));
         }
+        titleCurrent = titleText.getText().toString();
+        tagCurrent = tagText.getText().toString();
+        descCurrent = descText.getText().toString();
+        locCurrent = locText.getText().toString();
     }
 
 }
