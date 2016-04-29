@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class NewPlanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_plan);
+        setContentView(R.layout.activity_new_plan);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle idData = getIntent().getExtras();
@@ -24,15 +25,10 @@ public class NewPlanActivity extends AppCompatActivity {
         if (idData == null)
             return;
 
-        int IdNumber = idData.getInt("IdNumber");
-
         titleText = (EditText) findViewById(R.id.editTitle);
         tagText = (EditText) findViewById(R.id.editTag);
         descText = (EditText) findViewById(R.id.editDescription);
         locText = (EditText) findViewById(R.id.editLocation);
-
-
-
 
     }
 
@@ -41,15 +37,11 @@ public class NewPlanActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == android.R.id.home) {
             Intent parentIntent = new Intent(this, MainActivity.class);
-            /*
-
-            SAVE DATA ON BACK OR EXIT.LEAVE A TOAST
-            */
 
             /*
             Make an if to find out is we are making a Note, Plan or Event.
             Maybe different views for each
-             */
+            */
             title = titleText.getText().toString();
             tag = tagText.getText().toString();
             desc = descText.getText().toString();
@@ -59,7 +51,7 @@ public class NewPlanActivity extends AppCompatActivity {
                 startActivity(parentIntent);
                 return true;
             }
-            else
+            else{
                 dbHandler.insertData(
                     title,
                     tag,
@@ -67,9 +59,10 @@ public class NewPlanActivity extends AppCompatActivity {
                     loc,
                     12
                 );
-            startActivity(parentIntent);
-            return true;
-
+                Toast.makeText(this, "Data Saved", Toast.LENGTH_SHORT).show();
+                startActivity(parentIntent);
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

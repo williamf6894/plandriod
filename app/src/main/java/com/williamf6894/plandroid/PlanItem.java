@@ -76,7 +76,6 @@ public class PlanItem {
     */
     public PlanItem() {
         super();
-
     }
 
     /**
@@ -136,7 +135,6 @@ public class PlanItem {
         this.description = description;
 
         //this kind of note will remind you, just have to set when
-
     }
 
     //This is a default study note
@@ -146,8 +144,6 @@ public class PlanItem {
         this.title = title;
         this.tag = tag;
         this.description = description;
-
-
 
     }*/
 

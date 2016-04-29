@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tag;
     TextView description;
     TextView location;
-
+    ArrayList<Integer> idNumbers;
 
 
     @Override
@@ -41,14 +41,22 @@ public class MainActivity extends AppCompatActivity {
         // listOfAllPlans = dbHandler.getTablePlansinfo();
         // Replace the String with a plan objects in the future
 
+        idNumbers = new ArrayList<>();
         Cursor res = dbHandler.getAllData();
         if (res.getCount() == 0){
             return;
         }
-        while(res.moveToNext()){
-            listOfAllPlans.add(new PlanItem(res.getInt(0), res.getInt(1), res.getString(2),
-                    res.getString(3), res.getString(4), res.getString(5)));
-        }
+        if (idNumbers.isEmpty())
+            while(res.moveToNext()){
+                listOfAllPlans.add(new PlanItem(res.getInt(0), res.getInt(1), res.getString(2),
+                        res.getString(3), res.getString(4), res.getString(5)));
+                idNumbers.add(res.getInt(0));
+            }
+        else
+            while(res.moveToNext()){
+                listOfAllPlans.add(new PlanItem(res.getInt(0), res.getInt(1), res.getString(2),
+                        res.getString(3), res.getString(4), res.getString(5)));
+            }
 
         ListAdapter mainListAdapter = new CustomAdapter(this, listOfAllPlans);
 
@@ -63,9 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        position += 1;
-                        Bundle dataBundle =  new Bundle();
-                        dataBundle.putInt("IdNumber", position);
+                        Bundle dataBundle = new Bundle();
+                        dataBundle.putInt("IdNumber", idNumbers.get(position));
 
                         Intent intent = new Intent(getApplicationContext(),OpenPlanActivity.class);
 
@@ -75,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

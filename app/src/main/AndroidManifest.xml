@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Plan App"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -15,10 +15,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OpenPlanActivity" android:parentActivityName="com.williamf6894.plandroid.MainActivity">
+        <activity
+            android:name=".OpenPlanActivity"
+            android:parentActivityName="com.williamf6894.plandroid.MainActivity"
+            android:label="Edit Plan"
+            >
 
         </activity>
-        <activity android:name=".NewPlanActivity" android:parentActivityName="com.williamf6894.plandroid.MainActivity">
+        <activity
+            android:name=".NewPlanActivity"
+            android:parentActivityName="com.williamf6894.plandroid.MainActivity"
+            android:label="Create Plan"
+            >
 
         </activity>
     </application>

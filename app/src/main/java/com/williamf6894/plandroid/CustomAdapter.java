@@ -19,6 +19,8 @@ import java.util.List;
 
 class CustomAdapter extends ArrayAdapter<PlanItem> {
 
+    View divisor;
+
     // This is just the constructor
     public CustomAdapter(Context context, List<PlanItem> PlanList) {
         super(context, R.layout.custom_row, PlanList);
@@ -32,17 +34,43 @@ class CustomAdapter extends ArrayAdapter<PlanItem> {
         String titleOfPlan = getItem(position).getTitle();
         String tagOfPlan = getItem(position).getTag();
         String descriptionOfPlan = getItem(position).getDescription();
+        String locationOfPlan = getItem(position).getLocation();
+
+
         //Get Something in the array.
 
+        divisor = customView.findViewById(R.id.primerdivisor);
         TextView plansTitle = (TextView) customView.findViewById(R.id.planTitle);
         TextView plansTag = (TextView) customView.findViewById(R.id.planTag);
         TextView plansDescription = (TextView) customView.findViewById(R.id.planDescription);
-
+        TextView plansLocation = (TextView) customView.findViewById(R.id.planLocation);
 
         plansTitle.setText(titleOfPlan);
-        plansTag.setText(tagOfPlan);
         plansDescription.setText(descriptionOfPlan);
+        plansLocation.setText(locationOfPlan);
+        plansTag.setText("#"+tagOfPlan);
+
+        if (titleOfPlan.equals(""))
+        changeVisibility(plansTitle, "");
+
+        divisor.setVisibility(View.GONE); //For anything below the divisor
+
+        changeVisibility(plansLocation, locationOfPlan);
+        changeVisibility(plansTag, tagOfPlan);
 
         return customView;
+    }
+
+    public void changeVisibility(TextView plansName, String plansNameString){
+        if (plansNameString.equals("")){
+            plansName.setVisibility(View.INVISIBLE);
+            plansName.setHeight(0);
+        }
+        else{
+            plansName.setVisibility(View.VISIBLE);
+            plansName.setHeight(60);
+            if (divisor.getVisibility() == View.GONE)
+                divisor.setVisibility(View.VISIBLE);
+        }
     }
 }

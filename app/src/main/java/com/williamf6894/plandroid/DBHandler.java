@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "plans.db";
     public static final String TABLE_PLANSINFO = "plans";
     public static final String TABLE_PLANSREMINDER = "REMINDERS";
@@ -82,9 +82,24 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_PLANSINFO, null, values);
     }
 
+    public void updateData(String id, String title, String tag, String description, String location, int schedid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, id);
+        values.put(COLUMN_SCHEDID, schedid);
+        values.put(COLUMN_TITLE, title);
+        values.put(COLUMN_TAG, tag);
+        values.put(COLUMN_DESCRIPTION, description);
+        values.put(COLUMN_LOCATION, location);
+        db.update(TABLE_PLANSINFO, values, "id = ? ", new String[] { id });
+    }
+
+    public Integer deleteData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_PLANSINFO, "ID = ?", new String[] {id});
+    }
 
     //Add a new Row to the DB
-
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PLANSINFO, null);
