@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="10dp"
     android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:paddingBottom="3dp"
     android:paddingRight="10dp"
     android:descendantFocusability="beforeDescendants">
 
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:weightSum="1"
         android:orientation="vertical"
-        android:background="@color/background_material_light"
+        android:background="@drawable/layer_card_background"
         android:nestedScrollingEnabled="false"
         android:gravity="center"
 
@@ -87,4 +87,6 @@
 
 
     </RelativeLayout>
+
+
 </FrameLayout>
