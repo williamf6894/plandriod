@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,10 +20,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     public List<PlanItem> listOfAllPlans = new ArrayList<>();
     public DBHandler dbHandler;
-    TextView title ;
-    TextView tag;
-    TextView description;
-    TextView location;
     ArrayList<Integer> idNumbers;
 
 
@@ -61,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         ListAdapter mainListAdapter = new CustomAdapter(this, listOfAllPlans);
 
         ListView thePlanView = (ListView) findViewById(R.id.mainView);
-        thePlanView.setItemsCanFocus(false);
         assert thePlanView != null;
+        thePlanView.setItemsCanFocus(false);
         thePlanView.setAdapter(mainListAdapter);
 
             //What happens when item is clicked on screen
@@ -73,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
                         Bundle dataBundle = new Bundle();
                         dataBundle.putInt("IdNumber", idNumbers.get(position));
-
                         Intent intent = new Intent(getApplicationContext(),OpenPlanActivity.class);
 
                         intent.putExtras(dataBundle);

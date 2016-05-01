@@ -16,19 +16,18 @@ import java.util.Date;
  */
 public class DBHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
     private static final String DATABASE_NAME = "plans.db";
     public static final String TABLE_PLANSINFO = "plans";
-    public static final String TABLE_PLANSREMINDER = "REMINDERS";
+    public static final String TABLE_PLANSREMINDER = "reminders";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_SCHEDID = "SCHEDID";
     public static final String COLUMN_TITLE = "TITLE";
     public static final String COLUMN_TAG = "TAG";
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
-    public static final String COLUMN_TRIGGERDATE = "TRIGGERDATE";
-    public static final String COLUMN_TRIGGERTIME = "TRIGGERTIME";
-    // public static final String COLUMN_REPEATING = "REPEATING";
-    public static final String COLUMN_ALARM = "ALARM";
+    public static final String COLUMN_TRIGGERTIME = "TIME";
+    public static final String COLUMN_REPEATING = "REPEATING";
+    public static final String COLUMN_REPEATTYPE = "REPEATTYPE";
     public static final String COLUMN_LOCATION = "LOCATION";
     // public static final String COLUMN_CUSTOMTIMEREPEAT = "CUSTOMTIMEREPEAT";
     // public static final String COLUMN_NUMBEROFREPETITIONS = "NUMBEROFREPETITIONS";
@@ -42,25 +41,8 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String query = "create table " + TABLE_PLANSINFO + "( " +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_SCHEDID + " INT, " +
-                COLUMN_TITLE + " TEXT, " +
-                COLUMN_TAG + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_LOCATION + " TEXT " +
-                ");";
-                //  +
-                // "\nCREATE TABLE " +
-                // TABLE_PLANSREMINDER + "(" +
-                // COLUMN_ID + " INTEGER, " +
-                // COLUMN_TRIGGERDATE + " DATE, " +
-                // COLUMN_TRIGGERTIME + " DATETIME, " +
-                // COLUMN_ALARM + " BOOLEAN " +
-                // ");";
-
         db.execSQL("CREATE TABLE plans ( ID INTEGER PRIMARY KEY AUTOINCREMENT, SCHEDID INT, TITLE TEXT, TAG TEXT, DESCRIPTION TEXT, LOCATION TEXT )");
-
+        db.execSQL("CREATE TABLE reminders ( ID INTEGER PRIMARY KEY, TIME INTEGER, REPEATING INTEGER, REPEATTYPE INTEGER)");
     }
 
     @Override
@@ -80,6 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_DESCRIPTION, description);
         values.put(COLUMN_LOCATION, location);
         db.insert(TABLE_PLANSINFO, null, values);
+        db.close();
     }
 
     public void updateData(String id, String title, String tag, String description, String location, int schedid){
@@ -91,7 +74,8 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_TAG, tag);
         values.put(COLUMN_DESCRIPTION, description);
         values.put(COLUMN_LOCATION, location);
-        db.update(TABLE_PLANSINFO, values, "id = ? ", new String[] { id });
+        db.update(TABLE_PLANSINFO, values, "ID = ? ", new String[] { id });
+        db.close();
     }
 
     public Integer deleteData(String id){
@@ -102,17 +86,56 @@ public class DBHandler extends SQLiteOpenHelper {
     //Add a new Row to the DB
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PLANSINFO, null);
-        return res;
+        return db.rawQuery("SELECT * FROM " + TABLE_PLANSINFO, null);
     }
 
 
     public Cursor getIdData(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_PLANSINFO + " WHERE ID = " + id, null);
-        return res;
+        return db.rawQuery("SELECT * FROM " + TABLE_PLANSINFO + " WHERE ID = " + id, null);
     }
     // Make a notebook maker
     // Have a Table for all the sched_ids and a sched name with each
+
+    //Add a new Row to the DB
+    public void insertReminder(String id, long time, int numberOfReps, int times){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, id);
+        values.put(COLUMN_TRIGGERTIME, time);
+        values.put(COLUMN_REPEATING, numberOfReps);
+        values.put(COLUMN_REPEATTYPE, times);
+        db.insert(TABLE_PLANSREMINDER, null, values);
+        db.close();
+    }
+
+    public void updateReminder(String id,long time, int numberOfReps, int times){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, id);
+        values.put(COLUMN_TRIGGERTIME, time);
+        values.put(COLUMN_REPEATTYPE, times);
+        values.put(COLUMN_REPEATING, numberOfReps);
+
+        db.update(TABLE_PLANSREMINDER, values, "ID = ? ", new String[] { id });
+        db.close();
+    }
+
+    public Integer deleteReminder(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_PLANSREMINDER, "ID = ?", new String[] {id});
+    } // Okay
+
+    //Add a new Row to the DB
+    public Cursor getAllReminder() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_PLANSREMINDER, null);
+    } // Might be Okay
+
+
+    public Cursor getIdReminder(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_PLANSREMINDER + " WHERE ID = " + id, null);
+    } // Okay
 
 }
